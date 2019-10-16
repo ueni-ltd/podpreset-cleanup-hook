@@ -3,3 +3,9 @@ kind: Kustomization
 resources:
 - podpreset-cleanup-hook.yaml
 - rbac.yaml
+patchesJSON6902:
+- target:
+    version: v1
+    kind: ServiceAccount
+    name: podpreset-cleanup
+  path: sa-label.yaml
