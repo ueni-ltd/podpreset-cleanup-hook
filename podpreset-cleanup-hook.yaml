@@ -10,7 +10,7 @@ spec:
     spec:
       containers:
       - name: kubectl
-        image: buoyantio/kubectl
+        image: 362870652376.dkr.ecr.eu-central-1.amazonaws.com/kubectl
         command: [ "sh", "-c"]
         args: [ "/kubectl delete podpreset $(PODPRESET) || true" ]
         env: []
