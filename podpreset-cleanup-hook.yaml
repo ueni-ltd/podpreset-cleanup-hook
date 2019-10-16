@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: podpreset-cleanup
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+spec:
+  template:
+    spec:
+      containers:
+      - name: kubectl
+        image: buoyantio/kubectl
+        command: [ "sh", "-c"]
+        args: [ "/kubectl delete podpreset $(PODPRESET) || true" ]
+        env: []
+      restartPolicy: Never
+      serviceAccountName: podpreset-cleanup
+  backoffLimit: 0
